@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        options:
+          # Creates a `copyWith` function even for classes with @freezed
+          copy_with: true
+          # Creates a `toJson` function for freezed classes
+          to_json: true
+          # Creates a `fromJson` factory for freezed classes
+          from_json: true
+      riverpod_generator:
+        options:
+          # Generate Riverpod code
+          generate_riverpod: true

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../animations/list_animations.dart';
-import '../animations/player_animations.dart';
-import '../animations/micro_interactions.dart';
-import '../../core/animation/refresh_rate_detector.dart';
+import '../../animations/list_animations.dart';
+import '../../animations/player_animations.dart';
+import '../../animations/micro_interactions.dart';
+import '../../../core/animation/refresh_rate_detector.dart';
 
 /// Demo page showcasing all advanced animations
 /// Use this page to test and verify 120fps performance

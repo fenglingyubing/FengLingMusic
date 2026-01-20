@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../animations/list_animations.dart';
+import '../../animations/player_animations.dart';
 import '../../animations/micro_interactions.dart';
-import '../../data/models/song_model.dart';
+import '../../../data/models/song_model.dart';
 
 /// Example: Enhanced Song List with Advanced Animations
 /// Shows integration of Task 4.12 animations in a real list
@@ -22,7 +23,7 @@ class EnhancedSongList extends StatefulWidget {
 }
 
 class _EnhancedSongListState extends State<EnhancedSongList> {
-  final Set<String> _favoriteSongs = {};
+  final Set<int> _favoriteSongs = {};
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _EnhancedSongListState extends State<EnhancedSongList> {
   }
 
   Widget _buildSongTile(SongModel song, int index) {
-    final isFavorite = _favoriteSongs.contains(song.id);
+    final isFavorite = song.id != null && _favoriteSongs.contains(song.id!);
 
     return MicroInteractions.rippleButton(
       onTap: () => widget.onSongTap(song),
@@ -106,14 +107,16 @@ class _EnhancedSongListState extends State<EnhancedSongList> {
             MicroInteractions.favoriteButton(
               isFavorite: isFavorite,
               onToggle: () {
-                setState(() {
-                  if (isFavorite) {
-                    _favoriteSongs.remove(song.id);
-                  } else {
-                    _favoriteSongs.add(song.id);
-                  }
-                });
-                widget.onFavoriteToggle(song);
+                if (song.id != null) {
+                  setState(() {
+                    if (isFavorite) {
+                      _favoriteSongs.remove(song.id!);
+                    } else {
+                      _favoriteSongs.add(song.id!);
+                    }
+                  });
+                  widget.onFavoriteToggle(song);
+                }
               },
               size: 24,
             ),
@@ -236,7 +239,7 @@ class _EnhancedPlayerPageState extends State<EnhancedPlayerPage> {
 
             // Song info with transition
             PlayerAnimations.songTransition(
-              songId: widget.currentSong.id,
+              songId: widget.currentSong.id?.toString() ?? '0',
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Column(

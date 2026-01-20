@@ -1,3 +1,4 @@
+import 'dart:math' as dart_math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -539,8 +540,6 @@ class Math {
     (i) => dart_math.sin(i / 100.0),
   );
 }
-
-import 'dart:math' as dart_math;
 
 /// Long press button with growing circle feedback
 class LongPressButton extends StatefulWidget {

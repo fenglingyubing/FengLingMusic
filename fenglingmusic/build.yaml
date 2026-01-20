@@ -13,3 +13,11 @@ targets:
         options:
           # Generate Riverpod code
           generate_riverpod: true
+
+# Global build runner options for better performance
+global_options:
+  # Enable caching to speed up subsequent builds
+  "*":
+    enable_caching: true
+    # Increase concurrency for faster builds (adjust based on CPU cores)
+    max_concurrent_builders: 8

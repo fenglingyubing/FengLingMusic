@@ -196,8 +196,8 @@ class _SongTileDraggableState extends State<SongTileDraggable>
   Widget _buildAlbumArt() {
     Widget artWidget;
 
-    if (widget.song.albumArtPath != null) {
-      final file = File(widget.song.albumArtPath!);
+    if (widget.song.coverPath != null) {
+      final file = File(widget.song.coverPath!);
       if (file.existsSync()) {
         artWidget = Image.file(
           file,

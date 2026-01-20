@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
-import '../../data/models/song_model.dart';
+import '../../../data/models/song_model.dart';
 import '../../providers/playlist_provider.dart';
-import '../../services/playlist/m3u_service.dart';
+import '../../../services/playlist/m3u_service.dart';
 import '../../widgets/song_tile_draggable.dart';
 
 /// Playlist detail page with drag-to-reorder and M3U export/import

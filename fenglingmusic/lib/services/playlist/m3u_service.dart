@@ -66,14 +66,10 @@ class M3UService {
         metadata: [],
       );
 
-      bool isExtended = false;
       M3USongMetadata? currentMetadata;
 
       for (final line in lines) {
         if (line.isEmpty || line.startsWith('#') && !line.startsWith('#EXTINF')) {
-          if (line == '#EXTM3U') {
-            isExtended = true;
-          }
           continue;
         }
 

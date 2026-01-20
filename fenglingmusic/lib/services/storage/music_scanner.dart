@@ -190,7 +190,6 @@ class MusicScanner {
         filePath: file.path,
         fileSize: fileSize,
         mimeType: mimeType,
-        bitRate: metadata.bitrate,
         trackNumber: trackNumber,
         discNumber: discNumber,
         year: year,

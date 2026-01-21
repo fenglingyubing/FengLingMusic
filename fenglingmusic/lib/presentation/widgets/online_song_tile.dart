@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../data/models/online_song.dart';
+import '../../services/download/download_manager.dart';
+import 'quality_selector.dart';
 
 /// 在线歌曲列表项组件
 ///
@@ -303,12 +305,7 @@ class _OnlineSongTileState extends State<OnlineSongTile> {
         // 下载按钮
         IconButton(
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('下载: ${widget.song.title}'),
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
+            _showQualitySelector(context);
           },
           icon: const Icon(Icons.download_rounded),
           iconSize: 20,
@@ -329,6 +326,72 @@ class _OnlineSongTileState extends State<OnlineSongTile> {
           ),
         ),
       ],
+    );
+  }
+
+  /// 显示音质选择器
+  void _showQualitySelector(BuildContext context) {
+    QualitySelector.show(
+      context: context,
+      selectedQuality: 'standard',
+      duration: widget.song.duration ~/ 1000,
+      onQualitySelected: (quality) async {
+        // 添加到下载队列
+        final downloadItem = await DownloadManager.instance.addDownload(
+          widget.song,
+          quality: quality,
+        );
+
+        if (!context.mounted) return;
+
+        if (downloadItem != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text('${widget.song.title} 已添加到下载队列'),
+                  ),
+                ],
+              ),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  Icon(
+                    Icons.error,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text('添加下载失败，请重试'),
+                  ),
+                ],
+              ),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Colors.red,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 
@@ -367,7 +430,10 @@ class _OnlineSongTileState extends State<OnlineSongTile> {
               ListTile(
                 leading: const Icon(Icons.download_rounded),
                 title: const Text('下载'),
-                onTap: () => Navigator.pop(context),
+                onTap: () {
+                  Navigator.pop(context);
+                  _showQualitySelector(context);
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.share_rounded),

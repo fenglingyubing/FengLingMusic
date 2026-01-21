@@ -104,7 +104,7 @@ class ScreenService {
       _currentScreenInfo = ScreenInfo(
         refreshRate: refreshRate,
         size: size,
-        displayName: primaryDisplay.name,
+        displayName: primaryDisplay.name ?? 'Unknown Display',
         isHighRefreshRate: isHighRefreshRate,
       );
     } catch (e) {

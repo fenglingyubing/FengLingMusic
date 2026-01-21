@@ -86,7 +86,7 @@ class WindowsPlatformManager {
     // Create default tray icon (you should replace with actual icon path)
     const iconPath = 'assets/icons/tray_icon.ico';
 
-    final menuItems = <TrayMenuItem>[
+    final menuItems = <MenuItemBase>[
       MenuItem(
         label: 'Show Window',
         onClicked: (_) => _windowService.show(),
@@ -114,7 +114,7 @@ class WindowsPlatformManager {
     await _systemTrayService.initialize(
       iconPath: iconPath,
       tooltip: 'FengLing Music',
-      menuItems: menuItems,
+      menuItems: Menu(items: menuItems),
     );
   }
 

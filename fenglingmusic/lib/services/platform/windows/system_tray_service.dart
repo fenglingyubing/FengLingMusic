@@ -15,7 +15,7 @@ class SystemTrayService {
   Future<void> initialize({
     required String iconPath,
     required String tooltip,
-    required List<TrayMenuItem> menuItems,
+    required Menu menuItems,
   }) async {
     if (!Platform.isWindows) {
       debugPrint('SystemTray: Not on Windows platform, skipping initialization');
@@ -74,7 +74,7 @@ class SystemTrayService {
   }
 
   /// Update context menu
-  Future<void> updateMenu(List<TrayMenuItem> menuItems) async {
+  Future<void> updateMenu(Menu menuItems) async {
     if (!_isInitialized) return;
 
     try {
@@ -130,8 +130,8 @@ final systemTrayServiceProvider = Provider<SystemTrayService>((ref) {
   return SystemTrayService();
 });
 
-/// TrayMenuItem extension for easy menu creation
-extension TrayMenuItemX on TrayMenuItem {
+/// MenuItemBase extension for easy menu creation
+class TrayMenuBuilder {
   /// Create a menu item
   static MenuItem item({
     required String label,
@@ -153,7 +153,7 @@ extension TrayMenuItemX on TrayMenuItem {
   /// Create a submenu
   static SubMenu submenu({
     required String label,
-    required List<TrayMenuItem> children,
+    required List<MenuItemBase> children,
   }) {
     return SubMenu(
       label: label,

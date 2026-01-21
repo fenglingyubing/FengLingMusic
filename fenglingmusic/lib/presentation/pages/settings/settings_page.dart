@@ -7,6 +7,7 @@ import '../../widgets/settings/scan_paths_section.dart';
 import '../../widgets/settings/playback_section.dart';
 import '../../widgets/settings/animation_section.dart';
 import '../../widgets/settings/cache_section.dart';
+import '../../widgets/settings/backup_section.dart';
 import 'dart:ui';
 
 /// Settings page
@@ -87,12 +88,20 @@ class SettingsPage extends ConsumerWidget {
                     .fadeIn(duration: 400.ms, delay: 400.ms)
                     .slideX(begin: -0.2, end: 0, duration: 400.ms, curve: Curves.easeOutCubic),
 
+                const SizedBox(height: 16),
+
+                // Backup Section
+                const BackupSection()
+                    .animate()
+                    .fadeIn(duration: 400.ms, delay: 500.ms)
+                    .slideX(begin: -0.2, end: 0, duration: 400.ms, curve: Curves.easeOutCubic),
+
                 const SizedBox(height: 32),
 
                 // Version Info
                 _buildVersionInfo(theme)
                     .animate()
-                    .fadeIn(duration: 400.ms, delay: 500.ms),
+                    .fadeIn(duration: 400.ms, delay: 600.ms),
               ]),
             ),
           ),

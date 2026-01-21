@@ -45,6 +45,7 @@ dependencies:
 
   # Database
   sqflite: ^2.3.0
+  sqflite_common_ffi: ^2.3.6
   hive: ^2.2.3
   hive_flutter: ^1.1.0
 

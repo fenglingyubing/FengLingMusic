@@ -25,6 +25,20 @@ flutter pub get
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
+## 应用入口与界面
+
+### 应用入口
+- 入口文件：`fenglingmusic/lib/main.dart`
+- 默认首页：`fenglingmusic/lib/presentation/pages/home/home_hub_page.dart`（Home Hub）
+
+### 桌面端数据库（Windows/macOS/Linux）
+本项目使用 SQLite 存储播放列表、收藏、历史等数据。桌面端需要使用 FFI 数据库实现：
+- 依赖：`sqflite_common_ffi`
+- 初始化：已在 `fenglingmusic/lib/main.dart` 中按桌面平台自动启用（无需手动额外配置）
+
+### 常见问题
+- 运行后只看到 Flutter 自带的 Counter 示例：通常是入口页未切到 Home Hub（请确认运行的是最新 `main` 分支，且 `fenglingmusic/lib/main.dart` 的 `home` 指向 Home Hub）。
+
 ## 构建性能优化
 
 ### ⚡ 最快的开发方式：使用热重载（推荐）

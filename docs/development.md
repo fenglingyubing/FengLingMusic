@@ -215,6 +215,380 @@ fenglingmusic/
 └── build_windows_fast.bat  # 快速构建脚本
 ```
 
+## 测试
+
+### 运行单元测试
+```bash
+flutter test
+```
+
+### 运行特定测试
+```bash
+flutter test test/services/audio_player_service_test.dart
+```
+
+### 测试覆盖率
+```bash
+flutter test --coverage
+genhtml coverage/lcov.info -o coverage/html
+```
+
+### 集成测试（Windows）
+```bash
+flutter test integration_test/app_test.dart -d windows
+```
+
+## 代码规范
+
+### Dart 代码规范
+- 使用 `flutter analyze` 检查代码
+- 遵循 [Effective Dart](https://dart.dev/guides/language/effective-dart) 规范
+- 使用 `dart format .` 格式化代码
+
+### 命名规范
+- 文件名：`snake_case.dart`
+- 类名：`PascalCase`
+- 变量和函数：`camelCase`
+- 常量：`kPascalCase` 或 `SCREAMING_SNAKE_CASE`
+
+### 注释规范
+```dart
+/// 这是一个公共 API 的文档注释
+///
+/// 详细说明功能...
+///
+/// Example:
+/// ```dart
+/// final player = AudioPlayerService();
+/// await player.play(song);
+/// ```
+class AudioPlayerService {
+  // 这是私有实现的注释
+  void _internalMethod() {}
+}
+```
+
+## 发布流程
+
+### 1. 准备发布
+
+#### 更新版本号
+编辑 `pubspec.yaml`：
+```yaml
+version: 1.0.0+1  # version+build_number
+```
+
+#### 更新 Changelog
+创建 `CHANGELOG.md` 记录版本变更。
+
+#### 运行完整测试
+```bash
+flutter test
+flutter analyze
+flutter build windows --release
+```
+
+### 2. 构建发布包
+
+#### Windows 发布包
+```bash
+# 构建 Release 版本
+flutter build windows --release
+
+# 生成的文件在：
+# build/windows/x64/runner/Release/
+```
+
+创建安装包：
+1. 使用 Inno Setup 或 NSIS 创建安装向导
+2. 或者打包成便携版 ZIP
+
+#### Android 发布包
+```bash
+# 构建 APK
+flutter build apk --release --split-per-abi
+
+# 构建 App Bundle（用于 Google Play）
+flutter build appbundle --release
+```
+
+签名配置见 [Android 签名配置](#android-签名配置)。
+
+### 3. 创建 GitHub Release
+
+```bash
+# 创建标签
+git tag -a v1.0.0 -m "Release version 1.0.0"
+git push origin v1.0.0
+
+# 使用 GitHub CLI 创建 Release
+gh release create v1.0.0 \
+  --title "FengLing Music v1.0.0" \
+  --notes "Release notes..." \
+  build/windows/Release/*.exe \
+  build/app/outputs/bundle/release/*.aab
+```
+
+### 4. 发布到应用商店（可选）
+
+#### Google Play
+1. 登录 [Google Play Console](https://play.google.com/console)
+2. 创建新版本
+3. 上传 AAB 文件
+4. 填写版本说明
+5. 提交审核
+
+#### Microsoft Store
+1. 登录 [Partner Center](https://partner.microsoft.com/dashboard)
+2. 创建新提交
+3. 上传 MSIX 包
+4. 填写应用信息
+5. 提交认证
+
+## Android 签名配置
+
+### 生成签名密钥
+```bash
+keytool -genkey -v -keystore ~/upload-keystore.jks \
+  -keyalg RSA -keysize 2048 -validity 10000 \
+  -alias upload
+```
+
+### 配置签名
+创建 `android/key.properties`：
+```properties
+storePassword=<密码>
+keyPassword=<密码>
+keyAlias=upload
+storeFile=<密钥文件路径>
+```
+
+在 `android/app/build.gradle` 中配置：
+```gradle
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    ...
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+```
+
+## 持续集成/持续部署 (CI/CD)
+
+### GitHub Actions
+
+创建 `.github/workflows/build.yml`：
+```yaml
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.5'
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.5'
+      - run: flutter config --enable-windows-desktop
+      - run: flutter build windows --release
+
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.5'
+      - run: flutter build apk --release
+```
+
+## 性能分析
+
+### 使用 Flutter DevTools
+```bash
+# 启动应用（Profile 模式）
+flutter run -d windows --profile
+
+# 在浏览器中打开 DevTools
+flutter pub global activate devtools
+flutter pub global run devtools
+```
+
+### 性能监控工具
+- **CPU Profiler**: 分析 CPU 使用情况
+- **Memory**: 监控内存使用和泄漏
+- **Performance**: 分析渲染性能和帧率
+- **Network**: 监控网络请求
+
+### 性能优化检查清单
+- [ ] 使用 `const` 构造函数
+- [ ] 避免在 `build` 方法中创建对象
+- [ ] 使用 `RepaintBoundary` 隔离动画
+- [ ] 图片使用合适的尺寸和格式
+- [ ] 列表使用 `ListView.builder`
+- [ ] 避免不必要的状态重建
+
+## 调试技巧
+
+### 打印调试
+```dart
+import 'dart:developer' as developer;
+
+// 使用 log 而不是 print
+developer.log('Debug message', name: 'MyApp');
+
+// 条件打印
+if (kDebugMode) {
+  print('Only in debug mode');
+}
+```
+
+### 断点调试
+1. 在 VS Code 中设置断点
+2. 按 F5 启动调试
+3. 使用 Debug Console 查看变量
+
+### 常用调试技巧
+```dart
+// 显示 Widget 边界
+import 'package:flutter/rendering.dart';
+debugPaintSizeEnabled = true;
+
+// 显示性能覆层
+import 'package:flutter/material.dart';
+MaterialApp(
+  showPerformanceOverlay: true,
+  ...
+)
+```
+
+## 常见错误及解决方案
+
+### 错误：DLL 找不到
+```
+Error: Unable to load DLL 'xyz.dll'
+```
+**解决方案**：确保所有依赖的 DLL 文件在可执行文件目录中。
+
+### 错误：Riverpod 状态未初始化
+```
+StateError: Cannot read a provider while initializing a provider
+```
+**解决方案**：检查 Provider 依赖关系，避免循环依赖。
+
+### 错误：build_runner 冲突
+```
+Conflicting outputs
+```
+**解决方案**：
+```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+### 错误：热重载失败
+**解决方案**：按 `R` 进行热重启，或重新启动应用。
+
+## 贡献指南
+
+### 如何贡献
+
+1. **Fork 项目**
+   ```bash
+   # 在 GitHub 上 Fork 项目
+   git clone https://github.com/YOUR_USERNAME/FengLingMusic.git
+   cd FengLingMusic
+   ```
+
+2. **创建功能分支**
+   ```bash
+   git checkout -b feature/my-new-feature
+   ```
+
+3. **提交更改**
+   ```bash
+   git add .
+   git commit -m "feat: 添加新功能"
+   ```
+
+4. **推送到 GitHub**
+   ```bash
+   git push origin feature/my-new-feature
+   ```
+
+5. **创建 Pull Request**
+   - 在 GitHub 上创建 PR
+   - 描述清楚更改内容
+   - 等待代码审查
+
+### 代码审查检查清单
+
+提交 PR 前请确保：
+- [ ] 代码通过 `flutter analyze`
+- [ ] 所有测试通过 `flutter test`
+- [ ] 添加了必要的测试
+- [ ] 更新了相关文档
+- [ ] 遵循代码规范
+- [ ] 提交信息清晰明确
+
+### 报告 Bug
+
+请在 GitHub Issues 中提交 Bug，包含：
+1. 问题描述
+2. 复现步骤
+3. 预期行为
+4. 实际行为
+5. 环境信息（OS、Flutter 版本等）
+6. 错误日志或截图
+
+### 建议功能
+
+在 GitHub Discussions 中提出功能建议，说明：
+1. 功能描述
+2. 使用场景
+3. 预期收益
+4. 可能的实现方案
+
+## 许可证
+
+本项目采用 MIT 许可证。详见 [LICENSE](../LICENSE) 文件。
+
 ## 资源链接
 - [Flutter 官方文档](https://flutter.dev/docs)
 - [Riverpod 文档](https://riverpod.dev)
@@ -222,3 +596,5 @@ fenglingmusic/
 - [项目设计文档](./design.md)
 - [需求文档](./requirements.md)
 - [任务清单](./tasks.md)
+- [用户手册](./user-manual.md)
+- [API 文档](./api-documentation.md)

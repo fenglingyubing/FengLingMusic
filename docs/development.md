@@ -31,6 +31,16 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - 入口文件：`fenglingmusic/lib/main.dart`
 - 默认首页：`fenglingmusic/lib/presentation/pages/home/home_hub_page.dart`（Home Hub）
 
+### 界面中文化（文案与字体）
+- **默认语言**：界面以中文（简体）为主，避免同一页面混杂英文；品牌名、协议名、格式名（如 FLAC/MP3）可保留英文。
+- **文案位置**：大部分用户可见文本位于 `fenglingmusic/lib/presentation/**`（页面、组件、对话框、SnackBar/Tooltip 等）。
+- **字体回退**：主题在 `fenglingmusic/lib/core/theme/app_theme.dart` 配置了 `Inter` + 常见中文字体回退，确保中文在各平台可正常显示。
+- **自检建议**（排查英文残留）：
+  ```bash
+  rg -n --pcre2 "Text\\([^\\)]*['\\\"][^'\\\"]*[A-Za-z][^'\\\"]*['\\\"]" fenglingmusic/lib/presentation -S
+  rg -n --pcre2 "tooltip:\\s*'[^']*[A-Za-z][^']*'" fenglingmusic/lib/presentation -S
+  ```
+
 ### 桌面端数据库（Windows/macOS/Linux）
 本项目使用 SQLite 存储播放列表、收藏、历史等数据。桌面端需要使用 FFI 数据库实现：
 - 依赖：`sqflite_common_ffi`

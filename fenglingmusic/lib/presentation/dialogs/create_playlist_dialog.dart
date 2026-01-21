@@ -123,24 +123,24 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.playlistId == null ? 'CREATE' : 'EDIT',
+            widget.playlistId == null ? '新建' : '编辑',
             style: TextStyle(
               fontFamily: 'Archivo Black',
               fontSize: 14,
               fontWeight: FontWeight.w900,
               color: Colors.white.withOpacity(0.8),
-              letterSpacing: 4,
+              letterSpacing: 1,
             ),
           ),
           const SizedBox(height: 4),
           Text(
-            'PLAYLIST',
+            '播放列表',
             style: TextStyle(
               fontFamily: 'Archivo Black',
               fontSize: 32,
               fontWeight: FontWeight.w900,
               color: Colors.white,
-              letterSpacing: 2,
+              letterSpacing: 0.5,
             ),
           ),
         ],
@@ -161,8 +161,8 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
           // Name field
           _buildTextField(
             controller: _nameController,
-            label: 'PLAYLIST NAME',
-            hint: 'My Awesome Playlist',
+            label: '播放列表名称',
+            hint: '我的精选歌单',
             icon: Icons.text_fields,
           ),
           const SizedBox(height: 20),
@@ -170,8 +170,8 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
           // Description field
           _buildTextField(
             controller: _descriptionController,
-            label: 'DESCRIPTION (OPTIONAL)',
-            hint: 'What makes this playlist special?',
+            label: '描述（可选）',
+            hint: '这张歌单有什么特别之处？',
             icon: Icons.description_outlined,
             maxLines: 3,
           ),
@@ -185,13 +185,13 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'COVER IMAGE',
+          '封面',
           style: TextStyle(
             fontFamily: 'Archivo Black',
             fontSize: 12,
             fontWeight: FontWeight.w900,
             color: Colors.white.withOpacity(0.6),
-            letterSpacing: 2,
+            letterSpacing: 0.8,
           ),
         ),
         const SizedBox(height: 12),
@@ -226,7 +226,7 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Tap to select cover',
+                        '点击选择封面',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 14,
@@ -287,7 +287,7 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
             fontSize: 12,
             fontWeight: FontWeight.w900,
             color: Colors.white.withOpacity(0.6),
-            letterSpacing: 2,
+            letterSpacing: 0.8,
           ),
         ),
         const SizedBox(height: 8),
@@ -335,13 +335,13 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
           TextButton(
             onPressed: _isLoading ? null : () => Navigator.pop(context),
             child: Text(
-              'CANCEL',
+              '取消',
               style: TextStyle(
                 fontFamily: 'Archivo Black',
                 fontSize: 14,
                 fontWeight: FontWeight.w900,
                 color: Colors.white.withOpacity(0.6),
-                letterSpacing: 1,
+                letterSpacing: 0.5,
               ),
             ),
           ),
@@ -367,12 +367,12 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
                     ),
                   )
                 : Text(
-                    widget.playlistId == null ? 'CREATE' : 'SAVE',
+                    widget.playlistId == null ? '创建' : '保存',
                     style: TextStyle(
                       fontFamily: 'Archivo Black',
                       fontSize: 14,
                       fontWeight: FontWeight.w900,
-                      letterSpacing: 1,
+                      letterSpacing: 0.5,
                     ),
                   ),
           ),
@@ -399,7 +399,7 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
     if (name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please enter a playlist name'),
+          content: Text('请输入播放列表名称'),
           backgroundColor: const Color(0xFFe94560),
         ),
       );
@@ -421,7 +421,7 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Playlist created successfully'),
+            content: Text('播放列表创建成功'),
             backgroundColor: Colors.green,
           ),
         );
@@ -431,7 +431,7 @@ class _CreatePlaylistDialogState extends ConsumerState<CreatePlaylistDialog>
         setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error creating playlist: $e'),
+            content: Text('创建播放列表失败：$e'),
             backgroundColor: const Color(0xFFe94560),
           ),
         );

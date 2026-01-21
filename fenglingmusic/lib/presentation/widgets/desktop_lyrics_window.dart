@@ -55,7 +55,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
     if (!Platform.isWindows) {
       return const Scaffold(
         body: Center(
-          child: Text('Desktop lyrics only available on Windows'),
+          child: Text('桌面歌词仅支持 Windows'),
         ),
       );
     }
@@ -187,7 +187,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
                 // Lock button
                 _buildControlButton(
                   icon: Icons.lock_outline,
-                  tooltip: 'Lock position',
+                  tooltip: '锁定位置',
                   onPressed: () => setState(() => _isLocked = true),
                 ),
 
@@ -196,7 +196,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
                 // Font size
                 _buildControlButton(
                   icon: Icons.text_fields,
-                  tooltip: 'Adjust font size',
+                  tooltip: '调整字号',
                   onPressed: _showFontSizeDialog,
                 ),
 
@@ -205,7 +205,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
                 // Color picker
                 _buildControlButton(
                   icon: Icons.palette,
-                  tooltip: 'Change color',
+                  tooltip: '更改颜色',
                   onPressed: _showColorPicker,
                 ),
 
@@ -214,7 +214,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
                 // Opacity
                 _buildControlButton(
                   icon: Icons.opacity,
-                  tooltip: 'Adjust opacity',
+                  tooltip: '调整透明度',
                   onPressed: _showOpacityDialog,
                 ),
 
@@ -223,7 +223,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
                 // Close
                 _buildControlButton(
                   icon: Icons.close,
-                  tooltip: 'Close desktop lyrics',
+                  tooltip: '关闭桌面歌词',
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ],
@@ -267,7 +267,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
               const Icon(Icons.lock, color: Colors.white, size: 16),
               const SizedBox(width: 6),
               const Text(
-                'Locked',
+                '已锁定',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 12,
@@ -314,7 +314,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
     showDialog(
       context: context,
       builder: (context) => _SettingsDialog(
-        title: 'Font Size',
+        title: '字号',
         child: StatefulBuilder(
           builder: (context, setState) => Column(
             mainAxisSize: MainAxisSize.min,
@@ -330,7 +330,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
                   this.setState(() => _fontSize = value);
                 },
               ),
-              Text('${_fontSize.round()} px'),
+              Text('${_fontSize.round()} 像素'),
             ],
           ),
         ),
@@ -351,7 +351,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
     showDialog(
       context: context,
       builder: (context) => _SettingsDialog(
-        title: 'Text Color',
+        title: '文字颜色',
         child: Wrap(
           spacing: 12,
           runSpacing: 12,
@@ -386,7 +386,7 @@ class _DesktopLyricsWindowState extends ConsumerState<DesktopLyricsWindow> {
     showDialog(
       context: context,
       builder: (context) => _SettingsDialog(
-        title: 'Opacity',
+        title: '透明度',
         child: StatefulBuilder(
           builder: (context, setState) => Column(
             mainAxisSize: MainAxisSize.min,
@@ -458,7 +458,7 @@ class _SettingsDialog extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Close'),
+                    child: const Text('关闭'),
                   ),
                 ),
               ],

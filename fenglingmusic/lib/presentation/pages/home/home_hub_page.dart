@@ -47,8 +47,8 @@ class HomeHubPage extends StatelessWidget {
                     ),
                     delegate: SliverChildListDelegate.fixed([
                       _HubCard(
-                        title: 'PLAYLISTS',
-                        subtitle: 'Neo‑Vinyl collections',
+                        title: '播放列表',
+                        subtitle: '霓虹黑胶精选',
                         icon: Icons.queue_music_rounded,
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
@@ -58,8 +58,8 @@ class HomeHubPage extends StatelessWidget {
                         onTap: () => _push(context, const PlaylistPage()),
                       ),
                       _HubCard(
-                        title: 'LIBRARY',
-                        subtitle: 'Albums · Artists · Folders',
+                        title: '音乐库',
+                        subtitle: '专辑 · 艺术家 · 文件夹',
                         icon: Icons.library_music_rounded,
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
@@ -71,8 +71,8 @@ class HomeHubPage extends StatelessWidget {
                         onTap: () => _showLibrarySheet(context),
                       ),
                       _HubCard(
-                        title: 'SEARCH',
-                        subtitle: 'Local flow‑wave search',
+                        title: '搜索',
+                        subtitle: '本地音乐搜索',
                         icon: Icons.search_rounded,
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
@@ -84,8 +84,8 @@ class HomeHubPage extends StatelessWidget {
                         onTap: () => _push(context, const SearchPage()),
                       ),
                       _HubCard(
-                        title: 'ONLINE',
-                        subtitle: 'Multi‑platform search',
+                        title: '在线',
+                        subtitle: '多平台搜索',
                         icon: Icons.public_rounded,
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
@@ -97,8 +97,8 @@ class HomeHubPage extends StatelessWidget {
                         onTap: () => _push(context, const OnlineSearchPage()),
                       ),
                       _HubCard(
-                        title: 'FAVORITES',
-                        subtitle: 'Songs you keep',
+                        title: '收藏',
+                        subtitle: '你喜欢的歌曲',
                         icon: Icons.favorite_rounded,
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
@@ -110,8 +110,8 @@ class HomeHubPage extends StatelessWidget {
                         onTap: () => _push(context, const FavoritesPage()),
                       ),
                       _HubCard(
-                        title: 'HISTORY',
-                        subtitle: 'Recently played',
+                        title: '历史',
+                        subtitle: '最近播放',
                         icon: Icons.history_rounded,
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
@@ -123,8 +123,8 @@ class HomeHubPage extends StatelessWidget {
                         onTap: () => _push(context, const RecentlyPlayedPage()),
                       ),
                       _HubCard(
-                        title: 'DOWNLOADS',
-                        subtitle: 'Queue & progress',
+                        title: '下载',
+                        subtitle: '队列与进度',
                         icon: Icons.download_rounded,
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
@@ -136,8 +136,8 @@ class HomeHubPage extends StatelessWidget {
                         onTap: () => _push(context, const DownloadPage()),
                       ),
                       _HubCard(
-                        title: 'SETTINGS',
-                        subtitle: 'Theme · playback · hotkeys',
+                        title: '设置',
+                        subtitle: '主题 · 播放 · 快捷键',
                         icon: Icons.tune_rounded,
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
@@ -206,10 +206,10 @@ class HomeHubPage extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'LIBRARY',
+                              '音乐库',
                               style: TextStyle(
                                 fontFamily: 'Archivo Black',
-                                letterSpacing: 4,
+                                letterSpacing: 1,
                                 fontSize: 18,
                                 color: (isDark ? Colors.white : Colors.black)
                                     .withOpacity(0.88),
@@ -224,8 +224,8 @@ class HomeHubPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         _LibraryAction(
-                          title: 'Albums',
-                          subtitle: 'Browse by artwork',
+                          title: '专辑',
+                          subtitle: '按封面浏览',
                           icon: Icons.album_rounded,
                           onTap: () async {
                             Navigator.of(ctx).pop();
@@ -233,8 +233,8 @@ class HomeHubPage extends StatelessWidget {
                           },
                         ),
                         _LibraryAction(
-                          title: 'Artists',
-                          subtitle: 'People behind the sound',
+                          title: '艺术家',
+                          subtitle: '声音背后的人',
                           icon: Icons.person_rounded,
                           onTap: () async {
                             Navigator.of(ctx).pop();
@@ -242,8 +242,8 @@ class HomeHubPage extends StatelessWidget {
                           },
                         ),
                         _LibraryAction(
-                          title: 'Folders',
-                          subtitle: 'Browse your disk',
+                          title: '文件夹',
+                          subtitle: '浏览本地文件',
                           icon: Icons.folder_rounded,
                           onTap: () async {
                             Navigator.of(ctx).pop();
@@ -305,7 +305,7 @@ class _Header extends StatelessWidget {
                   ),
                   const SizedBox(height: 14),
                   Text(
-                    'Neo‑Vinyl player hub — jump into playlists, search, and your library.',
+                    'Neo‑Vinyl 播放中心 — 进入歌单、搜索与音乐库。',
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 14,
@@ -362,11 +362,11 @@ class _StatusPill extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Text(
-            'READY',
+            '就绪',
             style: TextStyle(
               fontFamily: 'Archivo Black',
               fontSize: 12,
-              letterSpacing: 2,
+              letterSpacing: 1,
               color: (isDark ? Colors.white : Colors.black).withOpacity(0.82),
             ),
           ),
@@ -452,7 +452,7 @@ class _HubCard extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Archivo Black',
                       fontSize: 18,
-                      letterSpacing: 3,
+                      letterSpacing: 1,
                       color: Colors.white,
                     ),
                   ),

@@ -118,7 +118,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
                 : Icons.translate_outlined,
             color: theme.colorScheme.onSurface,
           ),
-          tooltip: 'Toggle translation',
+          tooltip: '切换翻译',
           onPressed: () {
             setState(() {
               _showTranslation = !_showTranslation;
@@ -132,7 +132,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
             Icons.refresh,
             color: theme.colorScheme.onSurface,
           ),
-          tooltip: 'Reload lyrics',
+          tooltip: '重新加载歌词',
           onPressed: () {
             // TODO: Uncomment when provider is ready
             // ref.read(lyricsControllerProvider.notifier).reloadLyrics();
@@ -150,7 +150,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
               value: 'clear_cache',
               child: ListTile(
                 leading: Icon(Icons.delete_outline),
-                title: Text('Clear lyrics cache'),
+                title: Text('清除歌词缓存'),
                 contentPadding: EdgeInsets.zero,
               ),
             ),
@@ -158,7 +158,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
               value: 'search_online',
               child: ListTile(
                 leading: Icon(Icons.search),
-                title: Text('Search lyrics online'),
+                title: Text('在线搜索歌词'),
                 contentPadding: EdgeInsets.zero,
               ),
             ),
@@ -166,7 +166,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
               value: 'desktop_lyrics',
               child: ListTile(
                 leading: Icon(Icons.picture_in_picture_alt),
-                title: Text('Desktop lyrics (Windows)'),
+                title: Text('桌面歌词（Windows）'),
                 contentPadding: EdgeInsets.zero,
               ),
             ),
@@ -298,7 +298,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
         _showLyricsBottomSheet(theme);
       },
       icon: const Icon(Icons.tune),
-      label: const Text('Customize'),
+      label: const Text('自定义'),
       backgroundColor: theme.colorScheme.primaryContainer,
       foregroundColor: theme.colorScheme.onPrimaryContainer,
     );
@@ -313,7 +313,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
         // TODO: Implement when provider is ready
         // notifier.clearCache().then((_) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Lyrics cache cleared')),
+          const SnackBar(content: Text('歌词缓存已清除')),
         );
         // });
         break;
@@ -326,12 +326,10 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
       case 'desktop_lyrics':
         // TODO: Show desktop lyrics window (Windows only)
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Desktop lyrics - Coming soon')),
+          const SnackBar(content: Text('桌面歌词 - 敬请期待')),
         );
         break;
     }
-  }
-
   }
 
   void _showLyricsBottomSheet(ThemeData theme) {
@@ -356,7 +354,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Lyrics Settings',
+                    '歌词设置',
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -365,7 +363,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
 
                   ListTile(
                     leading: const Icon(Icons.text_fields),
-                    title: const Text('Font size'),
+                    title: const Text('字号'),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
                       // TODO: Implement font size selector
@@ -374,7 +372,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
 
                   ListTile(
                     leading: const Icon(Icons.palette_outlined),
-                    title: const Text('Color theme'),
+                    title: const Text('配色主题'),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
                       // TODO: Implement color picker
@@ -383,7 +381,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage>
 
                   ListTile(
                     leading: const Icon(Icons.animation),
-                    title: const Text('Animation speed'),
+                    title: const Text('动画速度'),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
                       // TODO: Implement animation speed selector

@@ -40,12 +40,12 @@ class _RecentlyPlayedPageState extends ConsumerState<RecentlyPlayedPage> {
             backgroundColor: const Color(0xFF0D0D0D),
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
-                'RECENTLY PLAYED',
+                '最近播放',
                 style: TextStyle(
                   fontFamily: 'Playfair Display',
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
-                  letterSpacing: 3,
+                  letterSpacing: 2,
                   color: Color(0xFFD4AF37),
                   shadows: [
                     Shadow(
@@ -150,7 +150,7 @@ class _RecentlyPlayedPageState extends ConsumerState<RecentlyPlayedPage> {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Loading history...',
+                      '正在加载历史...',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.6),
                         fontFamily: 'DM Sans',
@@ -173,7 +173,7 @@ class _RecentlyPlayedPageState extends ConsumerState<RecentlyPlayedPage> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Failed to load history',
+                      '加载历史失败',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 18,
@@ -201,18 +201,18 @@ class _RecentlyPlayedPageState extends ConsumerState<RecentlyPlayedPage> {
           ),
           const SizedBox(height: 24),
           Text(
-            'No History Yet',
+            '暂无历史',
             style: TextStyle(
               fontFamily: 'Playfair Display',
               fontSize: 28,
               fontWeight: FontWeight.w600,
               color: Colors.white.withOpacity(0.9),
-              letterSpacing: 1.5,
+              letterSpacing: 0.5,
             ),
           ),
           const SizedBox(height: 12),
           Text(
-            'Start playing music to see your history',
+            '播放音乐后这里会显示历史记录',
             style: TextStyle(
               fontFamily: 'DM Sans',
               fontSize: 16,
@@ -313,15 +313,15 @@ class _HistorySongTile extends ConsumerWidget {
     final difference = now.difference(date);
 
     if (difference.inMinutes < 1) {
-      return 'Just now';
+      return '刚刚';
     } else if (difference.inHours < 1) {
-      return '${difference.inMinutes}m ago';
+      return '${difference.inMinutes} 分钟前';
     } else if (difference.inDays < 1) {
-      return '${difference.inHours}h ago';
+      return '${difference.inHours} 小时前';
     } else if (difference.inDays < 7) {
-      return '${difference.inDays}d ago';
+      return '${difference.inDays} 天前';
     } else {
-      return '${date.month}/${date.day}/${date.year}';
+      return '${date.year}/${date.month}/${date.day}';
     }
   }
 

@@ -39,12 +39,12 @@ class _MostPlayedPageState extends ConsumerState<MostPlayedPage> {
             backgroundColor: const Color(0xFF0D0D0D),
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
-                'MOST PLAYED',
+                '最常播放',
                 style: TextStyle(
                   fontFamily: 'Playfair Display',
                   fontSize: 26,
                   fontWeight: FontWeight.w700,
-                  letterSpacing: 3.5,
+                  letterSpacing: 2,
                   color: Color(0xFFD4AF37),
                   shadows: [
                     Shadow(
@@ -178,7 +178,7 @@ class _MostPlayedPageState extends ConsumerState<MostPlayedPage> {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Calculating top tracks...',
+                      '正在统计最常播放...',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.6),
                         fontFamily: 'DM Sans',
@@ -201,7 +201,7 @@ class _MostPlayedPageState extends ConsumerState<MostPlayedPage> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Failed to load statistics',
+                      '加载统计失败',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 18,
@@ -229,18 +229,18 @@ class _MostPlayedPageState extends ConsumerState<MostPlayedPage> {
           ),
           const SizedBox(height: 24),
           Text(
-            'No Statistics Yet',
+            '暂无统计',
             style: TextStyle(
               fontFamily: 'Playfair Display',
               fontSize: 28,
               fontWeight: FontWeight.w600,
               color: Colors.white.withOpacity(0.9),
-              letterSpacing: 1.5,
+              letterSpacing: 0.5,
             ),
           ),
           const SizedBox(height: 12),
           Text(
-            'Play more music to see your top tracks',
+            '多听几首歌就能看到你的常听排行',
             style: TextStyle(
               fontFamily: 'DM Sans',
               fontSize: 16,
@@ -492,7 +492,7 @@ class _MostPlayedTile extends ConsumerWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '$playCount ${playCount == 1 ? 'play' : 'plays'}',
+                            '$playCount 次播放',
                             style: TextStyle(
                               fontFamily: 'DM Sans',
                               fontSize: 12,

@@ -113,7 +113,7 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
                     children: [
                       // Title
                       Text(
-                        'ALBUMS',
+                        '专辑',
                         style: TextStyle(
                           fontSize: 48 + (12 * ratio),
                           fontWeight: FontWeight.w900,
@@ -129,7 +129,7 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
                           final albumsAsync = ref.watch(albumsProvider);
                           return albumsAsync.when(
                             data: (albums) => Text(
-                              '${albums.length} albums in your collection',
+                              '你的收藏中有 ${albums.length} 张专辑',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -154,7 +154,7 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
                 child: Opacity(
                   opacity: 1 - ratio,
                   child: Text(
-                    'Albums',
+                    '专辑',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
@@ -213,7 +213,7 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
             });
           },
           decoration: InputDecoration(
-            hintText: 'Search albums...',
+            hintText: '搜索专辑...',
             prefixIcon: const Icon(Icons.search),
             filled: true,
             fillColor: colorScheme.surfaceContainerHighest,
@@ -307,7 +307,7 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              _isSearching ? 'No albums found' : 'No albums yet',
+              _isSearching ? '未找到专辑' : '暂无专辑',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -317,8 +317,8 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
             const SizedBox(height: 8),
             Text(
               _isSearching
-                  ? 'Try a different search term'
-                  : 'Scan your music library to get started',
+                  ? '试试换个关键词'
+                  : '扫描你的音乐库以开始使用',
               style: TextStyle(
                 fontSize: 14,
                 color: colorScheme.onSurface.withOpacity(0.4),
@@ -347,7 +347,7 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Failed to load albums',
+              '加载专辑失败',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -367,7 +367,7 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
             FilledButton.icon(
               onPressed: () => ref.refresh(albumsProvider),
               icon: const Icon(Icons.refresh),
-              label: const Text('Retry'),
+              label: const Text('重试'),
             ),
           ],
         ),
@@ -418,15 +418,15 @@ class _AlbumsPageState extends ConsumerState<AlbumsPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Sort by',
+                  '排序方式',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               const SizedBox(height: 8),
-              _buildSortOption(context, 'Title (A-Z)', Icons.sort_by_alpha),
-              _buildSortOption(context, 'Artist', Icons.person),
-              _buildSortOption(context, 'Year', Icons.calendar_today),
-              _buildSortOption(context, 'Recently added', Icons.access_time),
+              _buildSortOption(context, '标题（A-Z）', Icons.sort_by_alpha),
+              _buildSortOption(context, '艺术家', Icons.person),
+              _buildSortOption(context, '年份', Icons.calendar_today),
+              _buildSortOption(context, '最近添加', Icons.access_time),
               const SizedBox(height: 16),
             ],
           ),

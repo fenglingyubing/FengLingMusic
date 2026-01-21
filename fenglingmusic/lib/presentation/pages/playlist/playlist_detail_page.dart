@@ -442,7 +442,7 @@ class _PlaylistDetailPageState extends ConsumerState<PlaylistDetailPage>
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Song removed from playlist'),
+        content: Text('已从播放列表移除歌曲'),
         backgroundColor: Colors.green,
       ),
     );
@@ -465,14 +465,14 @@ class _PlaylistDetailPageState extends ConsumerState<PlaylistDetailPage>
       if (filePath != null && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Playlist exported to: $filePath'),
+            content: Text('播放列表已导出到：$filePath'),
             backgroundColor: Colors.green,
           ),
         );
       } else if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to export playlist'),
+            content: Text('导出播放列表失败'),
             backgroundColor: const Color(0xFFe94560),
           ),
         );
@@ -495,7 +495,7 @@ class _PlaylistDetailPageState extends ConsumerState<PlaylistDetailPage>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to import M3U file'),
+            content: Text('导入 M3U 文件失败'),
             backgroundColor: const Color(0xFFe94560),
           ),
         );
@@ -509,7 +509,7 @@ class _PlaylistDetailPageState extends ConsumerState<PlaylistDetailPage>
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Found ${importResult.filePaths.length} songs in M3U file'),
+          content: Text('在 M3U 文件中找到 ${importResult.filePaths.length} 首歌曲'),
           backgroundColor: Colors.green,
         ),
       );

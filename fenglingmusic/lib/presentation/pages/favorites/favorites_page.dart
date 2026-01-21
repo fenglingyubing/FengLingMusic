@@ -40,12 +40,12 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
             backgroundColor: const Color(0xFF0D0D0D),
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
-                'FAVORITES',
+                '收藏',
                 style: TextStyle(
                   fontFamily: 'Playfair Display',
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
-                  letterSpacing: 4,
+                  letterSpacing: 2,
                   color: Color(0xFFD4AF37), // Golden
                   shadows: [
                     Shadow(
@@ -153,7 +153,7 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Loading your favorites...',
+                      '正在加载收藏...',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.6),
                         fontFamily: 'DM Sans',
@@ -175,7 +175,7 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Failed to load favorites',
+                      '加载收藏失败',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 18,
@@ -230,18 +230,18 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
               ),
           const SizedBox(height: 32),
           Text(
-            'No Favorites Yet',
+            '暂无收藏',
             style: TextStyle(
               fontFamily: 'Playfair Display',
               fontSize: 28,
               fontWeight: FontWeight.w600,
               color: Colors.white.withOpacity(0.9),
-              letterSpacing: 1.5,
+              letterSpacing: 0.5,
             ),
           ),
           const SizedBox(height: 12),
           Text(
-            'Songs you love will appear here',
+            '你喜欢的歌曲会出现在这里',
             style: TextStyle(
               fontFamily: 'DM Sans',
               fontSize: 16,

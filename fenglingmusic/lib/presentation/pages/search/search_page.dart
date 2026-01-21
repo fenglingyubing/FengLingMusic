@@ -180,7 +180,7 @@ class _SearchPageState extends State<SearchPage>
               ),
               const SizedBox(width: 8),
               Text(
-                'Search',
+                '搜索',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -227,7 +227,7 @@ class _SearchPageState extends State<SearchPage>
               color: isDark ? Colors.white : Colors.black87,
             ),
             decoration: InputDecoration(
-              hintText: 'Search songs, artists, albums...',
+              hintText: '搜索歌曲、艺术家、专辑...',
               hintStyle: TextStyle(
                 color: isDark ? Colors.white38 : Colors.black38,
               ),
@@ -275,8 +275,8 @@ class _SearchPageState extends State<SearchPage>
     if (_searchHistory.isEmpty) {
       return _buildEmptyState(
         icon: Icons.history_rounded,
-        title: 'No search history',
-        subtitle: 'Your recent searches will appear here',
+        title: '暂无搜索记录',
+        subtitle: '你的最近搜索会显示在这里',
         isDark: isDark,
       );
     }
@@ -291,7 +291,7 @@ class _SearchPageState extends State<SearchPage>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Recent Searches',
+                '最近搜索',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -301,7 +301,7 @@ class _SearchPageState extends State<SearchPage>
               TextButton(
                 onPressed: _clearHistory,
                 child: Text(
-                  'Clear All',
+                  '清除全部',
                   style: TextStyle(
                     color: isDark ? const Color(0xFF818CF8) : const Color(0xFF6366F1),
                   ),
@@ -420,7 +420,7 @@ class _SearchPageState extends State<SearchPage>
             ),
             const SizedBox(height: 20),
             Text(
-              'Searching...',
+              '正在搜索...',
               style: TextStyle(
                 fontSize: 16,
                 color: isDark ? Colors.white70 : Colors.black54,
@@ -436,8 +436,8 @@ class _SearchPageState extends State<SearchPage>
     if (_results == null || _results!.isEmpty) {
       return _buildEmptyState(
         icon: Icons.search_off_rounded,
-        title: 'No results found',
-        subtitle: 'Try searching for something else',
+        title: '未找到结果',
+        subtitle: '试试换个关键词',
         isDark: isDark,
       );
     }
@@ -449,7 +449,7 @@ class _SearchPageState extends State<SearchPage>
         children: [
           // Songs
           if (_results!.songs.isNotEmpty) ...[
-            _buildSectionHeader('Songs', _results!.songs.length, isDark),
+            _buildSectionHeader('歌曲', _results!.songs.length, isDark),
             const SizedBox(height: 12),
             ..._results!.songs.asMap().entries.map((entry) {
               final index = entry.key;
@@ -461,7 +461,7 @@ class _SearchPageState extends State<SearchPage>
 
           // Artists
           if (_results!.artists.isNotEmpty) ...[
-            _buildSectionHeader('Artists', _results!.artists.length, isDark),
+            _buildSectionHeader('艺术家', _results!.artists.length, isDark),
             const SizedBox(height: 12),
             ..._results!.artists.asMap().entries.map((entry) {
               final index = entry.key;
@@ -473,7 +473,7 @@ class _SearchPageState extends State<SearchPage>
 
           // Albums
           if (_results!.albums.isNotEmpty) ...[
-            _buildSectionHeader('Albums', _results!.albums.length, isDark),
+            _buildSectionHeader('专辑', _results!.albums.length, isDark),
             const SizedBox(height: 12),
             ..._results!.albums.asMap().entries.map((entry) {
               final index = entry.key;

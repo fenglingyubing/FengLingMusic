@@ -104,13 +104,13 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
             children: [
               // Bold geometric title
               Text(
-                'YOUR',
+                '你的',
                 style: TextStyle(
                   fontFamily: 'Archivo Black',
                   fontSize: 28,
                   fontWeight: FontWeight.w900,
                   color: Colors.white.withOpacity(0.6),
-                  letterSpacing: 8,
+                  letterSpacing: 2,
                   height: 0.9,
                 ),
               ),
@@ -126,20 +126,20 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
                   ),
                 ),
                 child: Text(
-                  'PLAYLISTS',
+                  '播放列表',
                   style: TextStyle(
                     fontFamily: 'Archivo Black',
                     fontSize: 48,
                     fontWeight: FontWeight.w900,
                     color: Colors.white,
-                    letterSpacing: 4,
+                    letterSpacing: 1,
                     height: 1.0,
                   ),
                 ),
               ),
               const SizedBox(height: 16),
               Text(
-                'Collections that move you',
+                '与你共振的收藏',
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 16,
@@ -208,7 +208,7 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
           ),
           const SizedBox(height: 24),
           Text(
-            'No playlists yet',
+            '还没有播放列表',
             style: TextStyle(
               fontFamily: 'Inter',
               fontSize: 24,
@@ -218,7 +218,7 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
           ),
           const SizedBox(height: 8),
           Text(
-            'Create your first collection',
+            '创建你的第一张歌单',
             style: TextStyle(
               fontFamily: 'Inter',
               fontSize: 16,
@@ -248,7 +248,7 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
           Icon(Icons.error_outline, size: 64, color: const Color(0xFFe94560)),
           const SizedBox(height: 16),
           Text(
-            'Error loading playlists',
+            '加载播放列表失败',
             style: TextStyle(
               fontFamily: 'Inter',
               fontSize: 18,
@@ -276,12 +276,12 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
       backgroundColor: const Color(0xFFe94560),
       elevation: 8,
       label: Text(
-        'CREATE',
+        '创建',
         style: TextStyle(
           fontFamily: 'Archivo Black',
           fontSize: 14,
           fontWeight: FontWeight.w900,
-          letterSpacing: 2,
+          letterSpacing: 1,
           color: Colors.white,
         ),
       ),
@@ -334,7 +334,7 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFF1a1a2e),
         title: Text(
-          'Delete Playlist?',
+          '删除播放列表？',
           style: TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
@@ -342,7 +342,7 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
           ),
         ),
         content: Text(
-          'This action cannot be undone.',
+          '此操作无法撤销。',
           style: TextStyle(
             fontFamily: 'Inter',
             color: Colors.white.withOpacity(0.8),
@@ -351,12 +351,12 @@ class _PlaylistPageState extends ConsumerState<PlaylistPage>
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text('CANCEL'),
+            child: Text('取消'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             child: Text(
-              'DELETE',
+              '删除',
               style: TextStyle(color: const Color(0xFFe94560)),
             ),
           ),

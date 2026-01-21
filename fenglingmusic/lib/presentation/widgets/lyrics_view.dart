@@ -187,7 +187,7 @@ class _LyricsViewState extends ConsumerState<LyricsView>
           ),
           const SizedBox(height: 24),
           Text(
-            'Loading lyrics...',
+            '正在加载歌词...',
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.6),
               letterSpacing: 0.5,
@@ -212,7 +212,7 @@ class _LyricsViewState extends ConsumerState<LyricsView>
             ),
             const SizedBox(height: 24),
             Text(
-              'Failed to load lyrics',
+              '歌词加载失败',
               style: theme.textTheme.titleMedium?.copyWith(
                 color: theme.colorScheme.error,
                 fontWeight: FontWeight.w600,
@@ -254,16 +254,16 @@ class _LyricsViewState extends ConsumerState<LyricsView>
           ),
           const SizedBox(height: 16),
           Text(
-            'No lyrics available',
+            '暂无歌词',
             style: theme.textTheme.titleMedium?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.4),
               fontWeight: FontWeight.w400,
-              letterSpacing: 1.0,
+              letterSpacing: 0.2,
             ),
           ),
           const SizedBox(height: 8),
           Text(
-            'Enjoy the music',
+            '享受音乐',
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.3),
               fontStyle: FontStyle.italic,
@@ -465,7 +465,7 @@ class _LyricsViewState extends ConsumerState<LyricsView>
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Auto-scroll',
+                  '自动滚动',
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.w500,

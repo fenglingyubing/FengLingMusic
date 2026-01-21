@@ -127,7 +127,7 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
                     children: [
                       // Bold title with dramatic typography
                       Text(
-                        'ARTISTS',
+                        '艺术家',
                         style: TextStyle(
                           fontSize: 48 + (12 * ratio),
                           fontWeight: FontWeight.w900,
@@ -143,7 +143,7 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
                           final artistsAsync = ref.watch(artistsProvider);
                           return artistsAsync.when(
                             data: (artists) => Text(
-                              '${artists.length} artists in your collection',
+                              '你的收藏中有 ${artists.length} 位艺术家',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -168,7 +168,7 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
                 child: Opacity(
                   opacity: 1 - ratio,
                   child: Text(
-                    'Artists',
+                    '艺术家',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
@@ -227,7 +227,7 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
             });
           },
           decoration: InputDecoration(
-            hintText: 'Search artists...',
+            hintText: '搜索艺术家...',
             prefixIcon: const Icon(Icons.search),
             filled: true,
             fillColor: colorScheme.surfaceContainerHighest,
@@ -321,7 +321,7 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
             ),
             const SizedBox(height: 16),
             Text(
-              _isSearching ? 'No artists found' : 'No artists yet',
+              _isSearching ? '未找到艺术家' : '暂无艺术家',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -331,8 +331,8 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
             const SizedBox(height: 8),
             Text(
               _isSearching
-                  ? 'Try a different search term'
-                  : 'Scan your music library to get started',
+                  ? '试试换个关键词'
+                  : '扫描你的音乐库以开始使用',
               style: TextStyle(
                 fontSize: 14,
                 color: colorScheme.onSurface.withOpacity(0.4),
@@ -361,7 +361,7 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
             ),
             const SizedBox(height: 16),
             Text(
-              'Failed to load artists',
+              '加载艺术家失败',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -381,7 +381,7 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
             FilledButton.icon(
               onPressed: () => ref.refresh(artistsProvider),
               icon: const Icon(Icons.refresh),
-              label: const Text('Retry'),
+              label: const Text('重试'),
             ),
           ],
         ),
@@ -430,15 +430,15 @@ class _ArtistsPageState extends ConsumerState<ArtistsPage>
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Sort by',
+                  '排序方式',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               const SizedBox(height: 8),
-              _buildSortOption(context, 'Name (A-Z)', Icons.sort_by_alpha),
-              _buildSortOption(context, 'Most songs', Icons.audiotrack),
-              _buildSortOption(context, 'Most albums', Icons.album),
-              _buildSortOption(context, 'Recently added', Icons.access_time),
+              _buildSortOption(context, '名称（A-Z）', Icons.sort_by_alpha),
+              _buildSortOption(context, '歌曲最多', Icons.audiotrack),
+              _buildSortOption(context, '专辑最多', Icons.album),
+              _buildSortOption(context, '最近添加', Icons.access_time),
               const SizedBox(height: 16),
             ],
           ),

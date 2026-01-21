@@ -230,11 +230,11 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage>
                       children: [
                         _buildStat(
                           Icons.audiotrack,
-                          '${widget.artist.songCount} songs',
+                          '${widget.artist.songCount} 首歌曲',
                         ),
                         _buildStat(
                           Icons.album,
-                          '${widget.artist.albumCount} albums',
+                          '${widget.artist.albumCount} 张专辑',
                         ),
                       ],
                     ),
@@ -359,7 +359,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage>
                   // TODO: Play all songs
                 },
                 icon: const Icon(Icons.play_arrow),
-                label: const Text('Play All'),
+                label: const Text('播放全部'),
                 style: FilledButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -375,7 +375,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage>
                   // TODO: Shuffle play
                 },
                 icon: const Icon(Icons.shuffle),
-                label: const Text('Shuffle'),
+                label: const Text('随机播放'),
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -418,7 +418,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage>
     return songsAsync.when(
       data: (songs) {
         if (songs.isEmpty) {
-          return _buildEmptyState('No songs found', Icons.music_note);
+          return _buildEmptyState('未找到歌曲', Icons.music_note);
         }
 
         return ListView.builder(
@@ -428,7 +428,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage>
           itemBuilder: (context, index) {
             // TODO: Replace with actual SongTile widget
             return ListTile(
-              title: Text('Song ${index + 1}'),
+              title: Text('歌曲 ${index + 1}'),
             );
           },
         );
@@ -444,7 +444,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage>
     return albumsAsync.when(
       data: (albums) {
         if (albums.isEmpty) {
-          return _buildEmptyState('No albums found', Icons.album);
+          return _buildEmptyState('未找到专辑', Icons.album);
         }
 
         return GridView.builder(
@@ -465,7 +465,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage>
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Text('Album ${index + 1}'),
+                child: Text('专辑 ${index + 1}'),
               ),
             );
           },
@@ -502,7 +502,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage>
   Widget _buildErrorState(String error) {
     return Center(
       child: Text(
-        'Error: $error',
+        '错误：$error',
         style: const TextStyle(color: Colors.white),
       ),
     );
@@ -574,8 +574,8 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
           fontWeight: FontWeight.w500,
         ),
         tabs: const [
-          Tab(text: 'Songs'),
-          Tab(text: 'Albums'),
+          Tab(text: '歌曲'),
+          Tab(text: '专辑'),
         ],
       ),
     );

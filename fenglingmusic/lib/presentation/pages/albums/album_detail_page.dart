@@ -95,7 +95,7 @@ class AlbumDetailPage extends ConsumerWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(40),
                       child: Text(
-                        'Error: $error',
+                        '错误：$error',
                         style: const TextStyle(color: Colors.white),
                       ),
                     ),
@@ -251,7 +251,7 @@ class AlbumDetailPage extends ConsumerWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    '${album.songCount} songs',
+                    '${album.songCount} 首',
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
@@ -334,7 +334,7 @@ class AlbumDetailPage extends ConsumerWidget {
                 // TODO: Play all songs
               },
               icon: const Icon(Icons.play_arrow),
-              label: const Text('Play'),
+              label: const Text('播放'),
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
@@ -350,7 +350,7 @@ class AlbumDetailPage extends ConsumerWidget {
                 // TODO: Shuffle
               },
               icon: const Icon(Icons.shuffle),
-              label: const Text('Shuffle'),
+              label: const Text('随机播放'),
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
@@ -377,7 +377,7 @@ class AlbumDetailPage extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'No songs in this album',
+              '该专辑暂无歌曲',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white.withOpacity(0.6),
@@ -414,8 +414,8 @@ class AlbumDetailPage extends ConsumerWidget {
     final minutes = duration.inMinutes.remainder(60);
 
     if (hours > 0) {
-      return '$hours h $minutes min';
+      return '$hours 小时 $minutes 分钟';
     }
-    return '$minutes min';
+    return '$minutes 分钟';
   }
 }

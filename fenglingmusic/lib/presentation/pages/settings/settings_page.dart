@@ -1,13 +1,16 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+
+import '../../../core/constants/app_constants.dart';
 import '../../providers/settings_provider.dart';
 import '../../widgets/settings/theme_section.dart';
 import '../../widgets/settings/scan_paths_section.dart';
 import '../../widgets/settings/playback_section.dart';
 import '../../widgets/settings/animation_section.dart';
 import '../../widgets/settings/cache_section.dart';
-import 'dart:ui';
 
 /// Settings page
 class SettingsPage extends ConsumerWidget {
@@ -112,7 +115,7 @@ class SettingsPage extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'FengLing Music',
+            AppConstants.appName,
             style: theme.textTheme.titleMedium?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.6),
               fontWeight: FontWeight.w600,
@@ -121,7 +124,7 @@ class SettingsPage extends ConsumerWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'v1.0.0',
+            'v${AppConstants.appVersion}',
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.4),
             ),

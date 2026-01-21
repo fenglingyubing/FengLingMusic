@@ -83,7 +83,7 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
       backgroundColor: colorScheme.surface,
       elevation: 0,
       title: const Text(
-        'Folders',
+        '文件夹',
         style: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.w700,
@@ -96,7 +96,7 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
           onPressed: () {
             // TODO: Play all songs in current folder
           },
-          tooltip: 'Play all',
+          tooltip: '播放全部',
         ),
         // Sort button
         IconButton(
@@ -121,7 +121,7 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
             _buildBreadcrumbItem(
               context,
               colorScheme,
-              'Root',
+              '根目录',
               '/',
               isLast: pathParts.isEmpty,
             ),
@@ -284,7 +284,7 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '${folder.songCount} songs',
+                        '${folder.songCount} 首歌曲',
                         style: TextStyle(
                           fontSize: 13,
                           color: colorScheme.onSurface.withOpacity(0.6),
@@ -320,7 +320,7 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              'This folder is empty',
+              '该文件夹为空',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -346,7 +346,7 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Failed to load folder',
+              '加载文件夹失败',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -368,7 +368,7 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
                 ref.refresh(folderContentsProvider(_currentPath));
               },
               icon: const Icon(Icons.refresh),
-              label: const Text('Retry'),
+              label: const Text('重试'),
             ),
           ],
         ),
@@ -402,14 +402,14 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Sort by',
+                  '排序方式',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               const SizedBox(height: 8),
               ListTile(
                 leading: const Icon(Icons.sort_by_alpha),
-                title: const Text('Name (A-Z)'),
+                title: const Text('名称（A-Z）'),
                 onTap: () {
                   Navigator.pop(context);
                   // TODO: Implement sorting
@@ -417,7 +417,7 @@ class _FolderBrowserPageState extends ConsumerState<FolderBrowserPage> {
               ),
               ListTile(
                 leading: const Icon(Icons.access_time),
-                title: const Text('Date modified'),
+                title: const Text('修改日期'),
                 onTap: () {
                   Navigator.pop(context);
                   // TODO: Implement sorting

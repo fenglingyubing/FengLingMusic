@@ -4,9 +4,9 @@ class AppConstants {
   AppConstants._();
 
   // Application info
-  static const String appName = 'FengLing Music';
+  static const String appName = '风铃音乐';
   static const String appVersion = '1.0.0';
-  static const String appDescription = 'A modern music player with 120fps smooth animations';
+  static const String appDescription = '现代化跨平台音乐播放器，支持 120fps 顺滑动画';
 
   // Database
   static const String databaseName = 'fenglingmusic.db';

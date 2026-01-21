@@ -261,7 +261,7 @@ class _AnimatedPlaylistCardState extends State<AnimatedPlaylistCard>
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  '${widget.playlist.songCount} songs',
+                  '${widget.playlist.songCount} 首',
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontSize: 12,

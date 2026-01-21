@@ -797,7 +797,7 @@ class _PlayerPageState extends ConsumerState<PlayerPage>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text(
-                              'Play Queue',
+                              '播放队列',
                               style: TextStyle(
                                 fontFamily: 'Serif',
                                 fontSize: 24,
@@ -810,7 +810,7 @@ class _PlayerPageState extends ConsumerState<PlayerPage>
                                 // TODO: Clear queue
                               },
                               child: Text(
-                                'Clear All',
+                                '清除全部',
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.7),
                                 ),
@@ -842,8 +842,8 @@ class _PlayerPageState extends ConsumerState<PlayerPage>
     final demoQueue = List.generate(
       15,
       (i) => {
-        'title': 'Song Title ${i + 1}',
-        'artist': 'Artist Name',
+        'title': '歌曲标题 ${i + 1}',
+        'artist': '艺术家',
         'duration': '3:${(20 + i * 5).toString().padLeft(2, '0')}',
         'isPlaying': i == 2,
       },
@@ -980,11 +980,11 @@ class _PlayerPageState extends ConsumerState<PlayerPage>
                   ),
                 ),
                 const SizedBox(height: 24),
-                _buildMenuItem(Icons.playlist_add, 'Add to Playlist'),
-                _buildMenuItem(Icons.share_rounded, 'Share'),
-                _buildMenuItem(Icons.info_outline_rounded, 'Song Info'),
-                _buildMenuItem(Icons.equalizer_rounded, 'Equalizer'),
-                _buildMenuItem(Icons.timer_outlined, 'Sleep Timer'),
+                _buildMenuItem(Icons.playlist_add, '添加到播放列表'),
+                _buildMenuItem(Icons.share_rounded, '分享'),
+                _buildMenuItem(Icons.info_outline_rounded, '歌曲信息'),
+                _buildMenuItem(Icons.equalizer_rounded, '均衡器'),
+                _buildMenuItem(Icons.timer_outlined, '睡眠定时'),
                 const SizedBox(height: 16),
               ],
             ),

@@ -19,10 +19,10 @@ void main() {
     expect(find.text('MUSIC'), findsOneWidget);
 
     // A couple of key destinations.
-    expect(find.text('PLAYLISTS'), findsOneWidget);
+    expect(find.text('播放列表'), findsOneWidget);
 
     await tester.drag(find.byType(CustomScrollView), const Offset(0, -800));
     await tester.pumpAndSettle();
-    expect(find.text('SETTINGS'), findsOneWidget);
+    expect(find.text('设置'), findsOneWidget);
   });
 }

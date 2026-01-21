@@ -5,6 +5,16 @@ class AppTheme {
   // Private constructor to prevent instantiation
   AppTheme._();
 
+  static const List<String> _cjkFontFallback = [
+    'PingFang SC',
+    'Microsoft YaHei',
+    'Noto Sans CJK SC',
+    'Noto Sans SC',
+    'Source Han Sans SC',
+    'Heiti SC',
+    'SimHei',
+  ];
+
   // Color schemes
   static const ColorScheme _lightColorScheme = ColorScheme(
     brightness: Brightness.light,
@@ -74,6 +84,8 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: _lightColorScheme,
       brightness: Brightness.light,
+      fontFamily: 'Inter',
+      fontFamilyFallback: _cjkFontFallback,
 
       // Typography
       textTheme: _textTheme,
@@ -132,6 +144,8 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: _darkColorScheme,
       brightness: Brightness.dark,
+      fontFamily: 'Inter',
+      fontFamilyFallback: _cjkFontFallback,
 
       // Typography
       textTheme: _textTheme,

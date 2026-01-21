@@ -141,7 +141,7 @@ class _SongTileDraggableState extends State<SongTileDraggable>
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                widget.song.artist ?? 'Unknown Artist',
+                                widget.song.artist ?? '未知艺术家',
                                 style: TextStyle(
                                   fontFamily: 'Inter',
                                   fontSize: 13,
@@ -178,7 +178,7 @@ class _SongTileDraggableState extends State<SongTileDraggable>
                               Icons.remove_circle_outline,
                               color: const Color(0xFFe94560),
                             ),
-                            tooltip: 'Remove from playlist',
+                            tooltip: '从播放列表移除',
                           ),
                         ],
                       ],

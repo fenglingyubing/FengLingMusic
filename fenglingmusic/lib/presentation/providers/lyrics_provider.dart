@@ -153,7 +153,7 @@ class LyricsController extends StateNotifier<LyricsState> {
     } catch (e) {
       state = state.copyWith(
         isLoading: false,
-        error: 'Failed to load lyrics: $e',
+        error: '歌词加载失败：$e',
       );
     }
   }
@@ -215,7 +215,7 @@ final lyricsControllerProvider = StateNotifierProvider<LyricsController, LyricsS
 
   // TODO: Replace with actual audio player service provider
   // This is a placeholder - you need to provide the actual audio player service
-  throw UnimplementedError('Audio player service provider not configured');
+  throw UnimplementedError('音频播放器服务 Provider 未配置');
 
   // When implemented, should be:
   // final audioPlayerService = ref.watch(audioPlayerServiceProvider);

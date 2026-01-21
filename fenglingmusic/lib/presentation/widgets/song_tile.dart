@@ -188,7 +188,7 @@ class _SongTileState extends State<SongTile> {
               const SizedBox(height: 16),
               ListTile(
                 leading: const Icon(Icons.playlist_add),
-                title: const Text('Add to playlist'),
+                title: const Text('添加到播放列表'),
                 onTap: () {
                   Navigator.pop(context);
                   // TODO: Add to playlist
@@ -196,7 +196,7 @@ class _SongTileState extends State<SongTile> {
               ),
               ListTile(
                 leading: const Icon(Icons.favorite_border),
-                title: const Text('Add to favorites'),
+                title: const Text('添加到收藏'),
                 onTap: () {
                   Navigator.pop(context);
                   // TODO: Add to favorites
@@ -204,7 +204,7 @@ class _SongTileState extends State<SongTile> {
               ),
               ListTile(
                 leading: const Icon(Icons.share),
-                title: const Text('Share'),
+                title: const Text('分享'),
                 onTap: () {
                   Navigator.pop(context);
                   // TODO: Share

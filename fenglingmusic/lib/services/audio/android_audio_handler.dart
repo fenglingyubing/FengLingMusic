@@ -248,7 +248,7 @@ class FengLingAudioHandler extends BaseAudioHandler with QueueHandler, SeekHandl
   /// 设置播放列表
   Future<void> setPlaylist(List<SongModel> songs, {int startIndex = 0}) async {
     _queue.clear();
-    _queue.addAll(songs.map((song) => _songToMediaItem(song)));
+    _queue.addAll(songs.map((song) => songToMediaItem(song)));
     _currentIndex = startIndex;
 
     // 更新队列
@@ -260,15 +260,15 @@ class FengLingAudioHandler extends BaseAudioHandler with QueueHandler, SeekHandl
     }
   }
 
-  /// 将SongModel转换为MediaItem
-  MediaItem _songToMediaItem(SongModel song) {
+  /// 将SongModel转换为MediaItem (公开方法供外部使用)
+  MediaItem songToMediaItem(SongModel song) {
     return MediaItem(
       id: song.id.toString(),
       title: song.title,
       artist: song.artist ?? 'Unknown Artist',
       album: song.album ?? 'Unknown Album',
       duration: Duration(milliseconds: song.duration),
-      artUri: song.albumArtPath != null ? Uri.file(song.albumArtPath!) : null,
+      artUri: song.coverPath != null ? Uri.file(song.coverPath!) : null,
       extras: {
         'filePath': song.filePath,
         'songId': song.id,
@@ -322,6 +322,7 @@ class FengLingAudioHandler extends BaseAudioHandler with QueueHandler, SeekHandl
   void _notifySongChange() {
     if (_currentIndex >= 0 && _currentIndex < _queue.length) {
       final mediaItem = _queue[_currentIndex];
+      final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
       final song = SongModel(
         id: mediaItem.extras!['songId'] as int,
         title: mediaItem.title,
@@ -329,10 +330,11 @@ class FengLingAudioHandler extends BaseAudioHandler with QueueHandler, SeekHandl
         album: mediaItem.album ?? 'Unknown Album',
         duration: mediaItem.duration?.inMilliseconds ?? 0,
         filePath: mediaItem.extras!['filePath'] as String,
-        albumArtPath: mediaItem.artUri?.path,
+        coverPath: mediaItem.artUri?.path,
         isFavorite: false,
         playCount: 0,
-        addedDate: DateTime.now(),
+        dateAdded: now,
+        dateModified: now,
       );
       _currentSongController.add(song);
     } else {

@@ -24,7 +24,7 @@ class AndroidAudioPlayerService implements AudioPlayerService {
     try {
       _audioHandler = await AudioService.init(
         builder: () => FengLingAudioHandler(),
-        config: const AudioServiceConfig(
+        config: AudioServiceConfig(
           androidNotificationChannelId: 'com.fenglingmusic.channel.audio',
           androidNotificationChannelName: 'FengLing Music',
           androidNotificationChannelDescription: 'FengLing Music Player Controls',
@@ -32,8 +32,8 @@ class AndroidAudioPlayerService implements AudioPlayerService {
           androidStopForegroundOnPause: false,
           androidNotificationClickStartsActivity: true,
           androidNotificationIcon: 'mipmap/ic_launcher',
-          fastForwardInterval: Duration(seconds: 10),
-          rewindInterval: Duration(seconds: 10),
+          fastForwardInterval: const Duration(seconds: 10),
+          rewindInterval: const Duration(seconds: 10),
         ),
       );
       _initialized = true;
@@ -69,7 +69,7 @@ class AndroidAudioPlayerService implements AudioPlayerService {
           await _handler.skipToQueueItem(index);
         } else {
           // 歌曲不在队列中，添加并播放
-          await _handler.addQueueItem(_handler._songToMediaItem(song));
+          await _handler.addQueueItem(_handler.songToMediaItem(song));
           await _handler.skipToQueueItem(_handler.currentQueue.length - 1);
         }
       }
@@ -124,12 +124,12 @@ class AndroidAudioPlayerService implements AudioPlayerService {
 
   @override
   void addToQueue(SongModel song) {
-    _handler.addQueueItem(_handler._songToMediaItem(song));
+    _handler.addQueueItem(_handler.songToMediaItem(song));
   }
 
   @override
   void insertToQueue(int index, SongModel song) {
-    _handler.insertQueueItem(index, _handler._songToMediaItem(song));
+    _handler.insertQueueItem(index, _handler.songToMediaItem(song));
   }
 
   @override
@@ -148,6 +148,7 @@ class AndroidAudioPlayerService implements AudioPlayerService {
 
   @override
   List<SongModel> getQueue() {
+    final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
     return _handler.currentQueue.map((item) {
       return SongModel(
         id: item.extras!['songId'] as int,
@@ -156,10 +157,11 @@ class AndroidAudioPlayerService implements AudioPlayerService {
         album: item.album ?? 'Unknown Album',
         duration: item.duration?.inMilliseconds ?? 0,
         filePath: item.extras!['filePath'] as String,
-        albumArtPath: item.artUri?.path,
+        coverPath: item.artUri?.path,
         isFavorite: false,
         playCount: 0,
-        addedDate: DateTime.now(),
+        dateAdded: now,
+        dateModified: now,
       );
     }).toList();
   }
@@ -218,6 +220,7 @@ class AndroidAudioPlayerService implements AudioPlayerService {
     final index = _handler.currentIndex;
     if (index >= 0 && index < _handler.currentQueue.length) {
       final item = _handler.currentQueue[index];
+      final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
       return SongModel(
         id: item.extras!['songId'] as int,
         title: item.title,
@@ -225,10 +228,11 @@ class AndroidAudioPlayerService implements AudioPlayerService {
         album: item.album ?? 'Unknown Album',
         duration: item.duration?.inMilliseconds ?? 0,
         filePath: item.extras!['filePath'] as String,
-        albumArtPath: item.artUri?.path,
+        coverPath: item.artUri?.path,
         isFavorite: false,
         playCount: 0,
-        addedDate: DateTime.now(),
+        dateAdded: now,
+        dateModified: now,
       );
     }
     return null;
@@ -260,20 +264,24 @@ class AndroidAudioPlayerService implements AudioPlayerService {
 
   @override
   Stream<List<SongModel>> get queueStream =>
-      _handler.queue.map((queue) => queue.map((item) {
-        return SongModel(
-          id: item.extras!['songId'] as int,
-          title: item.title,
-          artist: item.artist ?? 'Unknown Artist',
-          album: item.album ?? 'Unknown Album',
-          duration: item.duration?.inMilliseconds ?? 0,
-          filePath: item.extras!['filePath'] as String,
-          albumArtPath: item.artUri?.path,
-          isFavorite: false,
-          playCount: 0,
-          addedDate: DateTime.now(),
-        );
-      }).toList());
+      _handler.queue.map((queue) {
+        final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+        return queue.map((item) {
+          return SongModel(
+            id: item.extras!['songId'] as int,
+            title: item.title,
+            artist: item.artist ?? 'Unknown Artist',
+            album: item.album ?? 'Unknown Album',
+            duration: item.duration?.inMilliseconds ?? 0,
+            filePath: item.extras!['filePath'] as String,
+            coverPath: item.artUri?.path,
+            isFavorite: false,
+            playCount: 0,
+            dateAdded: now,
+            dateModified: now,
+          );
+        }).toList();
+      });
 
   @override
   Stream<PlayMode> get playModeStream => _handler.playModeStream;

@@ -13,6 +13,13 @@ targets:
         options:
           # Generate Riverpod code
           generate_riverpod: true
+      json_serializable:
+        options:
+          # Performance optimization: skip unnecessary checks in generated code
+          checked: false
+          # Only generate what's needed
+          create_to_json: true
+          create_factory: true
 
 # Global build runner options for better performance
 global_options:
@@ -20,4 +27,9 @@ global_options:
   "*":
     enable_caching: true
     # Increase concurrency for faster builds (adjust based on CPU cores)
-    max_concurrent_builders: 8
+    # Set to number of CPU cores for optimal performance (8-16 for modern CPUs)
+    max_concurrent_builders: 12
+    # Skip dev dependencies for faster builds
+    skip_dev_dependencies: false
+    # Use symlinks when possible (faster on some systems)
+    use_symlinks: true
